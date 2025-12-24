@@ -2,14 +2,12 @@ pipeline {
     agent any 
 
     stages {
-        stage('Hello Stage 1') {
+        stage('Execute External Script') {
             steps {
-                echo 'Hello from Stage 1'
-            }
-        }
-        stage('Hello Stage 2') {
-            steps {
-                echo 'Hello from Stage 2'
+                // Grant execution permissions to the script file
+                sh 'chmod +x hello.sh'
+                // Execute the shell script
+                sh './hello.sh'
             }
         }
     }
