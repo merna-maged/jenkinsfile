@@ -1,14 +1,30 @@
 pipeline {
-    agent any 
+    agent any
 
     stages {
-        stage('Execute External Script') {
+        stage('Checkout') {
             steps {
-                // Grant execution permissions to the script file
+                git branch: 'main',
+                    url: 'https://github.com/MohamedMagdy840/jenkins-repo.git',
+                    credentialsId: 'github'
+            }
+        }
+
+        stage('Run Hello World') {
+            steps {
+                sh 'ls -l'
                 sh 'chmod +x hello.sh'
-                // Execute the shell script
                 sh './hello.sh'
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed!'
         }
     }
 }
