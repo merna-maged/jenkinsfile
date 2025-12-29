@@ -11,7 +11,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/merna-maged/jenkinsfile-repo.git',
+                    url: 'https://github.com/merna-maged/jenkinsfile.git',
                     credentialsId: 'github'
             }
         }
